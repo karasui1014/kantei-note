@@ -1,0 +1,19 @@
+{
+  "name": "AI鑑定ノート",
+  "short_name": "鑑定ノート",
+  "description": "写真から、相場とメルカリの手取りがわかる",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F3F0E9",
+  "theme_color": "#F3F0E9",
+  "lang": "ja",
+  "categories": ["shopping", "utilities", "lifestyle"],
+  "icons": [
+    { "src": "./assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="auto">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AI鑑定ノート｜写真で相場とメルカリの手取りがわかる無料ツール</title>
+<meta name="description" content="品物の写真をChatGPT・Gemini・Claudeに見てもらい、中古相場、メルカリの出品価格と手数料・送料を引いた手取り、仕入れの利益、出品文のたたき台までまとめて出せる無料ツール。骨董・工芸の見立てにも。登録不要。">
+<link rel="canonical" href="https://karasui1014.github.io/kantei-note/">
+<meta name="theme-color" content="#F3F0E9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141311" media="(prefers-color-scheme: dark)">
+<meta name="referrer" content="no-referrer">
+<!-- 外への通信は無し。写真も記録も端末の中だけで扱う。外部リンクは「移動」なので妨げない -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; form-action 'none'; base-uri 'none'">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI鑑定ノート">
+<meta property="og:title" content="AI鑑定ノート｜写真で相場とメルカリの手取りがわかる">
+<meta property="og:description" content="写真をAIに見てもらうだけ。中古相場、メルカリの手取り、仕入れの利益、出品文のたたき台までまとめて。無料・登録なし。">
+<meta property="og:url" content="https://karasui1014.github.io/kantei-note/">
+<meta property="og:image" content="https://karasui1014.github.io/kantei-note/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="./manifest.webmanifest">
+<!-- iPhoneでホーム画面に追加したとき、アプリらしく開くための設定 -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="AI鑑定ノート">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
+<link rel="icon" href="./assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="stylesheet" href="./assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI鑑定ノート",
+  "url": "https://karasui1014.github.io/kantei-note/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "ja",
+  "isAccessibleForFree": true,
+  "description": "品物の写真をAIに見てもらい、中古相場とメルカリで売ったときの手取り、仕入れの利益、出品文のたたき台をまとめて出せる無料ツール。",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" }
+}
+</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#/" aria-label="AI鑑定ノート ホームへ">
+    <span class="mark" aria-hidden="true">鑑</span>
+    <span class="bname">AI鑑定ノート</span>
+  </a>
+  <nav class="topnav" aria-label="メニュー">
+    <a class="toplink" href="#/help">使い方</a>
+    <a class="icobtn" href="#/settings" aria-label="設定"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5h9M17 7.5h3M4 16.5h3M11 16.5h9"/><circle cx="15" cy="7.5" r="2"/><circle cx="9" cy="16.5" r="2"/></svg></a>
+  </nav>
+</header>
+
+<main id="view">
+  <!-- はじめての人向けの説明。検索エンジン・JavaScriptが動かない環境でも読める。
+       アプリが起動すると、はじめての人のホームと「使い方」で、この中身をそのまま使う -->
+  <section class="intro">
+    <p class="kicker">無料・登録なし・写真は端末の中だけ</p>
+    <h1 class="hero">写真から、相場と<br>メルカリの手取りがわかる</h1>
+    <p class="lead">品物の写真を、ふだん使っているAI（ChatGPT・Gemini・Claude）に見てもらい、返ってきた答えを貼り付けるだけ。中古相場から、手数料と送料を引いて手元に残る額まで、まとめて出します。</p>
+    <a class="btn primary xl" href="#/new"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5h3.2L8.8 6h6.4l1.6 2.5H20V19H4z"/><circle cx="12" cy="13.2" r="3.4"/></svg><span>写真から鑑定する</span></a>
+
+    <h2 class="sec">使い方は3つだけ</h2>
+    <ol class="how">
+      <li><span class="no">1</span><div><h3>写真を選ぶ</h3><p>全体の写真と、ラベル・型番・刻印のアップがあると、見立てが正確になります。</p></div></li>
+      <li><span class="no">2</span><div><h3>AIアプリに送る</h3><p>写真と鑑定用の指示文を、ボタンひとつでChatGPTなどに渡します。無料プランで使えます。</p></div></li>
+      <li><span class="no">3</span><div><h3>答えを貼り付ける</h3><p>AIの答えをコピーして貼ると、相場・手取り・出品文がそろった鑑定結果になります。</p></div></li>
+    </ol>
+
+    <h2 class="sec">わかること</h2>
+    <ul class="gets">
+      <li><strong>相場の幅</strong>と、いちばん多い価格帯</li>
+      <li><strong>メルカリの出品価格</strong>と、手数料・送料を引いた<strong>手取り</strong></li>
+      <li>仕入れ値を入れると、<strong>利益と利益率</strong></li>
+      <li>Yahoo!フリマ・ラクマ・Yahoo!オークション・買取店との<strong>手取りの比較</strong></li>
+      <li>メルカリなどの<strong>売り切れ価格を確かめるリンク</strong></li>
+      <li>骨董・工芸・作品の、<strong>作家・年代・技法の見立て</strong></li>
+      <li>出品用の<strong>商品名と説明文のたたき台</strong></li>
+      <li>持ち物の<strong>相場の合計</strong>と、売れた記録</li>
+    </ul>
+
+    <h2 class="sec">よくある質問</h2>
+    <div class="faq">
+      <details><summary>無料で使えますか？</summary><p>はい。このツールは無料で、登録もいりません。ChatGPT・Gemini・Claudeも、無料プランで使えます。</p></details>
+      <details><summary>写真はどこかに送られますか？</summary><p>このツールは、写真も記録もどこにも送信しません。写真は、あなたが選んだAIアプリにだけ、あなたの操作で渡されます。記録は、お使いの端末の中に保存されます。</p></details>
+      <details><summary>どのくらい正確ですか？</summary><p>AIの見立ては目安です。結果の画面の「実際に売れた値段を確かめる」から、メルカリやYahoo!オークションの売り切れ価格を見られます。見つけた値段を入れると、相場を補正できます。</p></details>
+      <details><summary>骨董品の本物・偽物もわかりますか？</summary><p>写真だけでは、真贋は決められません。作家・年代・技法の見立てと、確かめるべき点（落款・共箱・鑑定書など）までを出します。高額の可能性があるときは、専門の鑑定・買取店で実物を見てもらうのが確実です。</p></details>
+      <details><summary>型番やラベルが読めないときは？</summary><p>ラベル・刻印・型番のアップ写真を足すか、「わかっていること」に分かる範囲で書いてください。結果の画面から、何度でも聞き直せます。</p></details>
+      <details><summary>記録はどこに保存されますか？</summary><p>お使いの端末のブラウザの中です。ホーム画面に追加しておくと、記録が消えにくくなります。機種変更に備えて、設定から書き出しておけます。</p></details>
+    </div>
+    <a class="btn primary xl" href="#/new">写真から鑑定する</a>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>表示する金額は、AIの見立てと一般的な料金表にもとづく目安です。売れる金額を約束するものではありません。</p>
+  <p>メルカリ・Yahoo!オークション・Yahoo!フリマ・ラクマ・eBay・ChatGPT・Gemini・Claudeの各サービスとは関係のない、個人制作のツールです。</p>
+</footer>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<noscript><p class="noscript">このツールを使うには、JavaScriptを有効にしてください。</p></noscript>
+<script src="./assets/data.js"></script>
+<script src="./assets/core.js"></script>
+<script src="./assets/store.js"></script>
+<script src="./assets/app.js"></script>
+</body>
+</html>
