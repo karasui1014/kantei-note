@@ -1,7 +1,10 @@
 /* AI鑑定ノート Service Worker
    ⚠️ ファイルを更新したら、必ず CACHE の版を上げること（上げないと古い画面が出続ける）
-   通信はネットワーク優先。オフラインのときだけキャッシュを返す */
-const CACHE = 'kantei-note-v1';
+   通信はネットワーク優先。オフラインのときだけキャッシュを返す
+   ⚠️ karasui1014.github.io は、ほかのツールと同じオリジン。caches.keys() にはほかのツールの
+      キャッシュも並ぶので、消すのは自分の接頭辞（kantei-note-）のものだけにすること */
+const PREFIX = 'kantei-note-';
+const CACHE = PREFIX + 'v2';
 const ASSETS = [
   './', './index.html', './manifest.webmanifest',
   './assets/style.css', './assets/data.js', './assets/core.js', './assets/store.js', './assets/app.js',
@@ -15,7 +18,7 @@ self.addEventListener('install', e => {
 
 self.addEventListener('activate', e => {
   e.waitUntil(caches.keys()
-    .then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k))))
+    .then(ks => Promise.all(ks.filter(k => k.startsWith(PREFIX) && k !== CACHE).map(k => caches.delete(k))))
     .then(() => self.clients.claim()));
 });
 

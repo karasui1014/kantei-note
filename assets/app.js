@@ -790,10 +790,22 @@ function vSettings() {
   </section>`;
 }
 
+/* karasui1014.github.io は、ほかのツールと同じオリジン。キャッシュもService Workerも、
+   このツールのもの（名前の接頭辞・スコープが一致するもの）だけを見て、だけを消す */
+const CACHE_PREFIX = 'kantei-note-';
+async function ownCaches() {
+  return window.caches ? (await caches.keys()).filter(k => k.startsWith(CACHE_PREFIX)) : [];
+}
+async function ownRegistrations() {
+  if (!('serviceWorker' in navigator)) return [];
+  const scope = new URL('./', location.href).href;
+  return (await navigator.serviceWorker.getRegistrations()).filter(r => r.scope === scope);
+}
+
 function showCacheName() {
   const el = $('#cache-name');
-  if (!el || !window.caches) return;
-  caches.keys().then(ks => { el.textContent = ks.length ? `・${ks.join(', ')}` : '・キャッシュなし'; }).catch(() => {});
+  if (!el) return;
+  ownCaches().then(ks => { el.textContent = ks.length ? `・${ks.join(', ')}` : '・キャッシュなし'; }).catch(() => {});
 }
 
 function applyTheme() {
@@ -1016,8 +1028,8 @@ const ACT = {
 
   async refreshApp() {
     try {
-      if (navigator.serviceWorker) for (const r of await navigator.serviceWorker.getRegistrations()) await r.unregister();
-      if (window.caches) for (const k of await caches.keys()) await caches.delete(k);
+      for (const r of await ownRegistrations()) await r.unregister();
+      for (const k of await ownCaches()) await caches.delete(k);
     } catch (_) { /* そのまま読み込み直す */ }
     location.reload();
   },
@@ -1187,8 +1199,8 @@ render();
 const isLocal = ['localhost', '127.0.0.1', ''].includes(location.hostname);
 if ('serviceWorker' in navigator) {
   if (isLocal) {
-    navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister())).catch(() => {});
-    if (window.caches) caches.keys().then(ks => ks.forEach(k => caches.delete(k))).catch(() => {});
+    ownRegistrations().then(rs => rs.forEach(r => r.unregister())).catch(() => {});
+    ownCaches().then(ks => ks.forEach(k => caches.delete(k))).catch(() => {});
   } else {
     const hadController = !!navigator.serviceWorker.controller;
     navigator.serviceWorker.register('./sw.js').then(r => r.update().catch(() => {})).catch(() => {});

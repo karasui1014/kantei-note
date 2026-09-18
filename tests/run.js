@@ -434,6 +434,19 @@ for (const [label, sel] of [['ライト', ':root'], ['ダーク', ':root[data-th
   }
 }
 
+group('ほかのツールと同じオリジン（karasui1014.github.io）');
+t('sw.js が消すのは自分のキャッシュ（kantei-note-）だけ', () => {
+  const sw = read('sw.js');
+  ok(/const PREFIX = 'kantei-note-'/.test(sw) && /CACHE = PREFIX \+ 'v\d+'/.test(sw), '接頭辞とCACHEの形');
+  ok(/ks\.filter\(k => k\.startsWith\(PREFIX\) && k !== CACHE\)/.test(sw), 'activate で接頭辞を確かめていない');
+});
+t('画面側も、自分のキャッシュとService Workerだけを扱う', () => {
+  const src = read('assets/app.js');
+  ok(!/caches\.keys\(\)\.then\(ks => ks\.forEach/.test(src), 'すべてのキャッシュを消している');
+  ok(!/getRegistrations\(\)\.then\(rs => rs\.forEach/.test(src), 'すべてのService Workerを解除している');
+  ok(/r\.scope === scope/.test(src), 'スコープで絞っていない');
+});
+
 group('ファイルのそろい');
 t('sw.js がキャッシュするファイルが全部ある', () => {
   const list = [...read('sw.js').matchAll(/'\.\/([^']*)'/g)].map(m => m[1]).filter(Boolean);
