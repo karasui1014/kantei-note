@@ -1,2 +1,6 @@
 .DS_Store
 *.log
+# tools/make_chara_icons.py が作り直す途中の画像
+.source/chara.png
+.source/mag.png
+.source/icon_master.png

@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""AI鑑定ノートのアイコンと、SNSで共有されたときの画像（OGP・assets/og.jpg）を作る。
+"""AI鑑定ノートの、SNSで共有されたときの画像（OGP・assets/og.jpg）を作る。
+
+アプリのアイコンとファビコンは tools/make_chara_icons.py（ローファイ探偵の絵）で作る。
+このスクリプトは角印の絵を OGP 画像の中でだけ使う。
 
 使い方（プロジェクト直下で）:
     python3 tools/make_icons.py
@@ -123,12 +126,6 @@ def og_image():
 
 
 def main():
-    os.makedirs(ICONS, exist_ok=True)
-    save(seal(192), "icon-192.png")
-    save(seal(512), "icon-512.png")
-    save(seal(512, full_bleed=True, safe=0.72), "icon-maskable-512.png", rgb=True)
-    save(seal(180, full_bleed=True, safe=0.94), "apple-touch-icon.png", rgb=True)
-    save(seal(32, frame=False, glyph=0.84), "favicon-32.png")
     og_image()
 
 

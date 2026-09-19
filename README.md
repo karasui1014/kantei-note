@@ -37,12 +37,13 @@ assets/core.js        計算と読み取り（指示文づくり、AIの答え�
 assets/store.js       保存（localStorage・IndexedDB・写真の縮小・書き出しと読み込み）
 assets/app.js         画面
 assets/style.css      見た目
-assets/icons/         アイコン（tools/make_icons.py で作り直せる）
+assets/icons/         アイコン・ファビコン（tools/make_chara_icons.py で作り直せる。元絵は .source/）
 assets/og.jpg         SNSで共有されたときの画像
 manifest.webmanifest  ホーム画面に追加したときの設定
 sw.js                 オフライン用（ネットワーク優先）
 tests/run.js          テスト
-tools/make_icons.py   アイコンと共有画像を作るスクリプト
+tools/make_chara_icons.py  アイコンを作るスクリプト（ローファイ探偵が虫眼鏡で鑑定している絵。顔は隠さない）
+tools/make_icons.py   SNS共有画像（og.jpg）を作るスクリプト
 ```
 
 ## 手元で確かめる
