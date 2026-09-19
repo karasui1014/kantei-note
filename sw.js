@@ -4,12 +4,12 @@
    ⚠️ karasui1014.github.io は、ほかのツールと同じオリジン。caches.keys() にはほかのツールの
       キャッシュも並ぶので、消すのは自分の接頭辞（kantei-note-）のものだけにすること */
 const PREFIX = 'kantei-note-';
-const CACHE = PREFIX + 'v3';
+const CACHE = PREFIX + 'v4';
 const ASSETS = [
   './', './index.html', './manifest.webmanifest',
   './assets/style.css', './assets/data.js', './assets/core.js', './assets/store.js', './assets/app.js',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png', './assets/icons/apple-touch-icon.png',
-  './assets/icons/favicon-32.png',
+  './assets/icons/favicon-32.png', './assets/icons/favicon-192.png',
 ];
 
 self.addEventListener('install', e => {

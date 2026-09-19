@@ -2,7 +2,7 @@
 """AI鑑定ノートの、SNSで共有されたときの画像（OGP・assets/og.jpg）を作る。
 
 アプリのアイコンとファビコンは tools/make_chara_icons.py（ローファイ探偵の絵）で作る。
-このスクリプトは角印の絵を OGP 画像の中でだけ使う。
+OGP画像の左には、そのアイコン（assets/icons/icon-512.png）を置く。先に make_chara_icons.py を実行すること。
 
 使い方（プロジェクト直下で）:
     python3 tools/make_icons.py
@@ -106,9 +106,9 @@ def og_image():
     W, H = 1200, 630
     img = Image.new("RGB", (W * 2, H * 2), BG)
     d = ImageDraw.Draw(img)
-    # 左に角印
-    mark = seal(300 * 2)
-    img.paste(mark, (104 * 2, (H - 300)), mark)
+    # 左にアプリのアイコン（tools/make_chara_icons.py で作ったキャラの絵）
+    mark = Image.open(os.path.join(ICONS, "icon-512.png")).convert("RGBA").resize((340 * 2, 340 * 2), Image.LANCZOS)
+    img.paste(mark, (84 * 2, (H - 340)), mark)
     x = 470 * 2
     title = mincho(54 * 2)
     d.text((x, 168 * 2), "写真から、相場と", font=title, fill=INK)
