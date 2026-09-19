@@ -564,9 +564,10 @@ dl.facts dd { font-size: 14.5px; }
 
 /* ---------- 探偵キャラ（絵だけ。名前やセリフは出さない） ---------- */
 .chara { display: block; object-fit: contain; pointer-events: none; -webkit-user-select: none; user-select: none; flex: none; }
-.intro { position: relative; }
-.hero-chara { position: absolute; top: 2px; right: -4px; width: 84px; height: 84px; }
+/* キャラは文字の横に並べる（重ねない）。どの画面幅でも文字にかからないように */
+.hero-top { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+.hero-top .chara { width: 64px; height: 64px; }
+.hero-top .kicker { margin: 0; }
 .with-chara { display: flex; align-items: center; gap: 10px; }
 .with-chara .chara { width: 52px; height: 52px; }
 .with-chara p { margin: 0; }
-@media (min-width: 760px) { .hero-chara { width: 110px; height: 110px; top: -6px; } }
