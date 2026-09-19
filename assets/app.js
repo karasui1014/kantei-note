@@ -323,7 +323,7 @@ function vAsk(it, again) {
 
       <li class="step${sent ? ' ready' : ''}" id="st-paste">
         <div class="st-h"><span class="no">3</span><span>答えを貼り付ける</span></div>
-        <p class="hint">AIの答えをコピーして戻ってきたら、ここに貼り付けます。答え全体でも、最後の「json」の枠だけでも大丈夫です。</p>
+        <div class="${sent ? 'with-chara' : ''}">${sent ? '<img class="chara" src="./assets/chara/think.png" alt="" width="52" height="52">' : ''}<p class="hint">AIの答えをコピーして戻ってきたら、ここに貼り付けます。答え全体でも、最後の「json」の枠だけでも大丈夫です。</p></div>
         <button class="btn ${sent ? 'primary' : 'ghost'} xl" data-act="pasteClip">${ICON.paste}<span>コピーした答えを貼り付ける</span></button>
         <textarea class="answer" data-input="answer" rows="3" placeholder="ここに直接貼り付けてもOKです" aria-label="AIの答え"></textarea>
         <p class="msg" id="paste-msg" role="status">${esc(UI.pasteMsg)}</p>
@@ -467,7 +467,7 @@ function vResult(it) {
 
   return `<section class="result">
     <div class="head-row"><a class="back" href="#/">${ICON.back}一覧へ</a><span class="date">${esc(fmtDate(it.createdAt))}</span></div>
-    ${flash === 'ok' ? '<p class="flash">鑑定結果ができました。下に、売るときの手取りや出品文もあります。</p>' : ''}
+    ${flash === 'ok' ? '<div class="flash with-chara"><img class="chara" src="./assets/chara/happy.png" alt="" width="52" height="52"><p>鑑定結果ができました。下に、売るときの手取りや出品文もあります。</p></div>' : ''}
     ${flash === 'partial' ? '<p class="flash warn">一部だけ読み取りました。金額を確かめて、必要なら「金額を直す」から直してください。</p>' : ''}
 
     <article class="card sheet">
